@@ -43,11 +43,11 @@
 | Column           | Type       | Options                        |
 | ---------------- | ---------- | ------------------------------ |
 | zip_code         | integer    | null: false                    |
-| prefecture_id    | references | null: false, foreign_key: true |
+| prefecture_id    | integer    | null: false                    |
 | city             | string     | null: false                    |
 | address          | string     | null: false                    |
 | building_name    | string     |                                |
-| telephone_number | integer    | null: false                    |
+| telephone_number | string     | null: false                    |
 | buy              | references | null: false, foreign_key: true |
 
 ### Association
