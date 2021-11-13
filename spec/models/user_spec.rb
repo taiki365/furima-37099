@@ -29,8 +29,8 @@ RSpec.describe User, type: :model do
     end
     it 'パスワードが6文字以上ではない' do
       user = FactoryBot.build(:user)
-      @user.password = '12345'
-      @user.password_confirmation = '12345'
+      @user.password = 'ab345'
+      @user.password_confirmation = 'ab345'
       @user.valid?
       expect(@user.errors.full_messages).to include 'Password is too short (minimum is 6 characters)'
     end
@@ -60,12 +60,12 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include "First name can't be blank", 'First name is invalid'
     end
-    it '名前(全角)の苗字は全角での入力されている' do
+    it '名前(全角)の苗字は全角で入力されている' do
       @user.last_name = 'a'
       @user.valid?
       expect(@user.errors.full_messages).to include 'Last name is invalid'
     end
-    it '名前(全角)の名前は全角での入力されている' do
+    it '名前(全角)の名前は全角で入力されている' do
       @user.first_name = 'a'
       @user.valid?
       expect(@user.errors.full_messages).to include 'First name is invalid'
@@ -80,12 +80,12 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include "Kana first name can't be blank", 'Kana first name is invalid'
     end
-    it '名前(カナ)の苗字は全角カタカナで入力されている' do
+    it '名前(カナ)の苗字は全角カタカナ以外で入力されている' do
       @user.kana_last_name = 'a'
       @user.valid?
       expect(@user.errors.full_messages).to include 'Kana last name is invalid'
     end
-    it '名前(カナ)の名前は全角カタカナで入力されている' do
+    it '名前(カナ)の名前は全角カタカナ以外で入力されている' do
       @user.kana_first_name = 'a'
       @user.valid?
       expect(@user.errors.full_messages).to include 'Kana first name is invalid'
