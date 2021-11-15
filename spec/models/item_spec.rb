@@ -53,17 +53,17 @@ RSpec.describe Item, type: :model do
     it '商品の価格情報は半角数字で入力されている' do
       @item.price = 'ああ'
       @item.valid?
-      expect(@item.errors.full_messages).to include "Price is not a number"
+      expect(@item.errors.full_messages).to include 'Price is not a number'
     end
     it '商品の価格が300円以上である' do
       @item.price = '20'
       @item.valid?
-      expect(@item.errors.full_messages).to include "Price must be greater than 300"
+      expect(@item.errors.full_messages).to include 'Price must be greater than 300'
     end
     it '商品の価格が9999999円以下である' do
       @item.price = '10000000'
       @item.valid?
-      expect(@item.errors.full_messages).to include "Price must be less than 9999999"
+      expect(@item.errors.full_messages).to include 'Price must be less than 9999999'
     end
   end
 end

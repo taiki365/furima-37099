@@ -15,6 +15,7 @@ class Item < ApplicationRecord
   validates :delivery_fee_id, presence: true
   validates :prefecture_id, presence: true
   validates :delivery_date_id, presence: true
-  validates :price, presence: true, format: { with: /\A[-]?[0-9]+(\.[0-9]+)?\z/ }, numericality: { greater_than:300, less_than:9999999 }
+  validates :price, presence: true, format: { with: /\A-?[0-9]+(\.[0-9]+)?\z/ },
+                    numericality: { greater_than: 300, less_than: 9_999_999 }
   validates :user, presence: true
 end
