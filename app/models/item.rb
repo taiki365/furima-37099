@@ -10,11 +10,11 @@ class Item < ApplicationRecord
   validates :image, presence: true
   validates :title, presence: true
   validates :profile, presence: true
-  validates :category_id, presence: true,numericality: { greater_than: 2 }
-  validates :status_id, presence: true,numericality: { greater_than: 2 }
-  validates :delivery_fee_id, presence: true,numericality: { greater_than: 2 }
-  validates :prefecture_id, presence: true,numericality: { greater_than: 2 }
-  validates :delivery_date_id, presence: true,numericality: { greater_than: 2 }
+  validates :category_id, presence: true,numericality: { greater_than: 1 }
+  validates :status_id, presence: true,numericality: { greater_than: 1 }
+  validates :delivery_fee_id, presence: true,numericality: { greater_than: 1 }
+  validates :prefecture_id, presence: true,numericality: { greater_than: 1 }
+  validates :delivery_date_id, presence: true,numericality: { greater_than: 1 }
   validates :price, presence: true, format: { with: /\A-?[0-9]+(\.[0-9]+)?\z/ },
                     numericality: { greater_than: 300, less_than: 9_999_999 }
   validates :user, presence: true
