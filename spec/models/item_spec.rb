@@ -94,7 +94,7 @@ RSpec.describe Item, type: :model do
       it 'userが紐付いていなければ出品できない' do
         @item.user = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include "User must exist", "User can't be blank"
+        expect(@item.errors.full_messages).to include 'User must exist', "User can't be blank"
       end
     end
     context '商品が出品出来る場合' do
