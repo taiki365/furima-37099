@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new,:edit]
-  before_action :@item = Item.find(params[:id])
+  before_action :authenticate_user!, only: [:new, :edit]
+  before_action :@item = Item.find(params[:id]), only: [:show, :edit, :update]
   def index
     @items = Item.all.order(id: 'DESC')
   end
