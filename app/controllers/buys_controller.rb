@@ -4,6 +4,7 @@ class BuysController < ApplicationController
   def index
     @buy_delivery = BuyDelivery.new
     @item = Item.find(params[:item_id])
+    # redirect_to root_path unless  == @item.user_id
   end
 
   def create
