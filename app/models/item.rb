@@ -1,5 +1,6 @@
 class Item < ApplicationRecord
   belongs_to :user
+  has_one :buy
   has_one_attached :image
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
@@ -16,6 +17,6 @@ class Item < ApplicationRecord
   validates :prefecture_id, presence: true, numericality: { greater_than: 1 }
   validates :delivery_date_id, presence: true, numericality: { greater_than: 1 }
   validates :price, presence: true, format: { with: /\A-?[0-9]+(\.[0-9]+)?\z/ },
-                    numericality: { greater_than: 300, less_than: 9_999_999 }
+                    numericality: { greater_than: 299, less_than: 10_000_000 }
   validates :user, presence: true
 end
