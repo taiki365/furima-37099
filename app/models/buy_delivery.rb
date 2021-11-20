@@ -1,6 +1,6 @@
 class BuyDelivery
   include ActiveModel::Model
-  attr_accessor :user_id, :item_id, :zip_code, :prefecture_id, :city, :address, :building_name, :telephone_number, :token, :buy_id
+  attr_accessor :user_id, :item_id, :zip_code, :prefecture_id, :city, :address, :building_name, :telephone_number, :token
 
   with_options presence: true do
     validates :user_id
@@ -9,6 +9,7 @@ class BuyDelivery
     validates :city
     validates :address
     validates :telephone_number
+    validates :token
   end
   validates :prefecture_id, numericality: { other_than: 1, message: ' must be greater than 2' }
   validates :zip_code, format: { with: /\A\d{3}-\d{4}\z/ }

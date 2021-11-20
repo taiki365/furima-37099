@@ -39,8 +39,18 @@ RSpec.describe BuyDelivery, type: :model do
         @buy_delivery.valid?
         expect(@buy_delivery.errors.full_messages).to include 'Zip code is invalid'
       end
-      it '電話番号は10桁以上11桁以内のみ配送出来る' do
+      it '郵便番号は「-」が含まれていなければ配送出来ない' do
+        @buy_delivery.zip_code = '12'
+        @buy_delivery.valid?
+        expect(@buy_delivery.errors.full_messages).to include 'Zip code is invalid'
+      end
+      it '電話番号が9桁以下では購入出来ない' do
         @buy_delivery.telephone_number = '11'
+        @buy_delivery.valid?
+        expect(@buy_delivery.errors.full_messages).to include 'Telephone number is invalid'
+      end
+      it '電話番号は12桁以上では購入出来ない' do
+        @buy_delivery.telephone_number = '123456789123'
         @buy_delivery.valid?
         expect(@buy_delivery.errors.full_messages).to include 'Telephone number is invalid'
       end
@@ -54,9 +64,29 @@ RSpec.describe BuyDelivery, type: :model do
         @buy_delivery.valid?
         expect(@buy_delivery.errors.full_messages).to include 'Prefecture  must be greater than 2'
       end
+      it 'userが紐付いていなければ出品できない' do
+        @buy_delivery.user_id = nil
+        @buy_delivery.valid?
+        expect(@buy_delivery.errors.full_messages).to include "User can't be blank"
+      end
+      it 'tokenが空では購入出来ない' do
+        @buy_delivery.token = ''
+        @buy_delivery.valid?
+        expect(@buy_delivery.errors.full_messages).to include "Token can't be blank"
+      end
+      it 'itemが紐付いていなければ出品できない' do
+        @buy_delivery.item_id = nil
+        @buy_delivery.valid?
+        expect(@buy_delivery.errors.full_messages).to include "Item can't be blank"
+      end
     end
     context '商品が購入、配送出来る場合' do
       it '全ての項目が入力されていれば購入出来る' do
+        expect(@buy_delivery).to be_valid
+      end
+      it '建物名が空でも購入出来る' do
+        @buy_delivery.building_name = ''
+        @buy_delivery.valid?
         expect(@buy_delivery).to be_valid
       end
     end
